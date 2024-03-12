@@ -1,6 +1,6 @@
 <?php
    $estacao = ['Verão', 'Outono','Inverno', 'Primavera'];
-   $meses = [["Dezembro",'Janeiro','Março'],['Março','Abril','Maio','Junho'],
+   $meses = [["Dezembro",'Janeiro','Fevereiro','Março'],['Março','Abril','Maio','Junho'],
    ['Junho','Julho','Agosto','Setembro'],['Setembro','Outubro','Novembro',"Dezembro"]];
 ?>
 
@@ -15,15 +15,15 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 </head>
 <body>
-     <?php
+
+<?php
          //count obtem o comprimento do vetor
-         for($i=0;$i<count($semana);$i++) {
-            echo $semana[$i];
-            echo '<br>';
+         for($i=0;$i<count($estacao);$i++) {
             
-            for($a=0;$a < count($aulas[$i]);$a++ ) {
-                echo " ". ($a+1)." aula:". $aulas[$i][$a];
-                
+            echo "<br>A estação $estacao[$i] ocorre nos meses: ";
+            
+            for($a=0;$a < count($meses[$i]);$a++ ) {
+                echo " ".$meses[$i][$a];
             }
             echo "<br>";
          }
