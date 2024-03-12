@@ -13,20 +13,22 @@
          Referencia oficial sobre manipulação de String
 </a>
 <pre>
-    strlen(): Retorna o comprimento de uma string
+    strlen(): Retorna a quantidade de bytes de uma string
+    mb_strlen(): Retorna o comprimento da string em caracteres
     Exemplo:
     
     <?php
     $str = "Olá Mundo!";
-    echo strlen($str); // Saída: 10
-    
+    echo "Olá Mundo! em bytes:". strlen($str)."<br>"; // Saída: 11
+    echo "Olá Mundo! em caracteres: ". mb_strlen($str)."<br>"; // Saída: 10
     ?>
+
     substr(): Retorna uma parte de uma string.
     Exemplo:
     
     <?php
     $str = "Ola Mundo!";
-    echo substr($str, 0, 3); // Saída: "Olá"
+    echo "substr(str, 0, 3) = ". substr($str, 0, 3)."<br>"; // Saída: "Olá"
     
     ?>
     strpos(): Encontra a posição da primeira ocorrência de uma substring em uma string.''
@@ -34,7 +36,7 @@
     
     <?php
     $str = "Olá Mundo!";
-    echo strpos($str, "Mundo"); // Saída: 4
+    echo "strpos(str, 'Mundo') = ".mb_strpos($str, "Mundo"); // Saída: 4
     
     ?>
     str_replace(): Substitui todas as ocorrências da string de busca com a string de substituição.''
@@ -42,7 +44,8 @@
     
     <?php
     $str = "Olá Mundo!";
-    echo str_replace("Mundo", "Planeta", $str); // Saída: "Olá Planeta!"
+    
+    echo 'str_replace("Mundo", "Planeta", $str) = '.str_replace("Mundo", "Planeta", $str)."<br>"; // Saída: "Olá Planeta!"
     
     ?>
     strtolower(): Converte uma string para minúsculas.''
@@ -50,7 +53,7 @@
     
     <?php
     $str = "Olá Mundo!";
-    echo strtolower($str); // Saída: "olá mundo!"
+    echo 'strtolower($str) = '.strtolower($str).'<br>'; // Saída: "olá mundo!"
     
     ?>
     strtoupper(): Converte uma string para maiúsculas.''
@@ -58,7 +61,7 @@
     
     <?php
     $str = "Olá Mundo!";
-    echo strtoupper($str); // Saída: "OLÁ MUNDO!"
+    echo 'strtoupper($str) = '.strtoupper($str).'<br>'; // Saída: "olá mundo!"
     
     ?>
     trim(): Remove espaços em branco (ou outros caracteres) do início e do final de uma string.''
@@ -66,7 +69,7 @@
     
     <?php
     $str = "   Olá Mundo!   ";
-    echo trim($str); // Saída: "Olá Mundo!"
+    echo  'trim($str) = ['.trim($str).']<br>'; // Saída: "Olá Mundo!"
     
     ?>
     explode(): Divide uma string em um array de strings usando um delimitador.
