@@ -10,7 +10,7 @@
 
     <h1>Manipulação de String</h1>
     <a href="https://www.php.net/manual/pt_BR/ref.strings.php">
-         Referencia oficial sobre manipulação de String
+         Referência oficial sobre manipulação de String
 </a>
 <pre>
     strlen(): Retorna a quantidade de bytes de uma string
