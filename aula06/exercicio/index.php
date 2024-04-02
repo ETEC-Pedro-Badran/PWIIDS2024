@@ -1,6 +1,18 @@
 <?php
 // obtém o conteúdo do arquivo como uma string
 $conteudo = file_get_contents("dados.txt"); 
+// echo print_r(explode(";",$conteudo),true);
+//quebrando minha string a cada ENTER (\n) encontrado.
+//gerando um vetor contendo cada linha do arquivo.
+$dados = explode("\n",$conteudo);
+
+//fazendo echo com cada uma das linhas do array
+for ($contador=0;$contador<count($dados);$contador++) {
+  //echo $dados[$contador]."<br>";
+  $linha = explode(";",$dados[$contador]);
+
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -25,12 +37,23 @@ $conteudo = file_get_contents("dados.txt");
         </tr>
       </thead>
       <tbody>
+        <?php
+for ($contador=0;$contador<count($dados);$contador++) {
+  $linha = explode(";",$dados[$contador]);
+        ?>
+
         <tr>
-          <td>1</td>
-          <td>João</td>
-          <td>Orlândia</td>
-          <td>30</td>
+          <td> <?=$linha[0]?> </td>
+          <td> <?=$linha[1]?> </td>
+          <td> <?=$linha[2]?> </td>
+          <td> <?=$linha[3]?> </td>
         </tr>
+
+        <?php
+}
+        ?>
+
+
         <!-- Adicione mais linhas conforme necessário -->
       </tbody>
     </table>
