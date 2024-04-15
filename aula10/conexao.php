@@ -9,7 +9,8 @@ class Conexao {
         try {
 
          $pdo = new PDO($url, $usuario, $senha);    
-         
+         // https://www.php.net/manual/en/pdo.setattribute.php
+         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e){
             error_log($e->getMessage,0);
             throw $e;

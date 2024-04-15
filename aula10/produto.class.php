@@ -19,4 +19,8 @@ class Produto {
     function getPreco(){
         return $this->preco;
     }
+
+
+    
+
 }

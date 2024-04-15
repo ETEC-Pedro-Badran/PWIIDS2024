@@ -19,5 +19,8 @@ class ProdutoDAO {
        //executar 
        $declaracao->execute();         
     }
+ 
+    
+    // https://www.php.net/manual/pt_BR/pdostatement.fetchall.php
     
 }
