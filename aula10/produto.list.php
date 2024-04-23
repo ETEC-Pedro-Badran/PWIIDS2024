@@ -1,6 +1,7 @@
 
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-      <button class="btn btn-outline-primary outlined-button" type="button">Novo</button>
+      <a class="btn btn-outline-primary outlined-button" 
+         type="button" href="?operacao=incluir">Novo</a>
     </div>
     
     <table class="table table-striped border mt-2">

@@ -5,7 +5,16 @@ $dao = new ProdutoDAO();
 
 
 require "header.php"; 
-require "produto.list.php"; 
+$operacao = @$_GET['operacao'];
+
+if ($operacao=="incluir") {
+    require "produto.form.php"; 
+} else {
+    require "produto.list.php"; 
+}
+
+
 require "footer.php";   
         
+
 
