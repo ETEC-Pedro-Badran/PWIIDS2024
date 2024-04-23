@@ -10,7 +10,8 @@ class Conexao {
 
          $pdo = new PDO($url, $usuario, $senha);    
          // https://www.php.net/manual/en/pdo.setattribute.php
-         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         // ativar o modo de exibição de erros
+         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
         } catch (PDOException $e){
             error_log($e->getMessage,0);
             throw $e;

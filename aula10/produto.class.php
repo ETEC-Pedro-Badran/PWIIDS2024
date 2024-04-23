@@ -9,8 +9,12 @@ class Produto {
         $this->nome = $nome;
         $this->preco = $preco;
     }
+    
     function toString(){
         return $this->id." ".$this->nome." ".$this->preco;
+    }
+    function getId(){
+        return $this->id;
     }
 
     function getNome(){

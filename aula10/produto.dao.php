@@ -22,5 +22,25 @@ class ProdutoDAO {
  
     
     // https://www.php.net/manual/pt_BR/pdostatement.fetchall.php
+    function listar(){
+        //conectar no banco de dados
+        $conexao = Conexao::obterConexao();
+        //criar consulta
+        $sql = "SELECT id, nome, preco FROM Produto";
+        //preparar a consulta
+        $preparado = $conexao->prepare($sql);
+        //executar    
+        $preparado->execute();
+        //obter o resultados
+        $resposta = $preparado->fetchAll();
+        
+        //convertendo o resultado em Array para um array de Produtos.
+        $produtos = array(); 
+        foreach($resposta as $pro){
+           array_push($produtos,new Produto($pro['id'], $pro['nome'], $pro['preco']));
+        }
+        //retornar os resultados
+        return $produtos;
+    }
     
 }
