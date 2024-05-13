@@ -4,12 +4,13 @@
          type="button" href="?operacao=incluir">Novo</a>
     </div>
     
-    <table class="table table-striped border mt-2">
+    <table class="table table-striped border mt-2 ">
       <thead>  
         <tr>
             <th>Id</th>
             <th>Nome</th>
             <th>Preço</th>
+            <th></th>
         </tr>
       </thead>  
              
@@ -22,6 +23,14 @@
               <td><?=$pro->getId()?></td>      
               <td><?=$pro->getNome()?></td>
               <td>R$ <?=$pro->getPreco()?></td>
+              <td style="text-align: end;">
+                <div class="btn-group " role="group">
+                  <a href="/produto?operacao=alterar&id=<?=$pro->getId()?>" 
+                         class="btn btn-outline-warning">Alterar</a>
+                  <a click="excluir(<?=$pro->getId()?>)" class="btn btn-outline-danger">Excluir</a>
+                  
+                </div>
+              </td>
             </tr>   
        <?php
          }
