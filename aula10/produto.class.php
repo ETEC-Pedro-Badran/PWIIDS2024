@@ -3,6 +3,7 @@ class Produto {
     private $id;
     private $nome;
     private $preco;
+    public $imagem;
 
     function __construct($id, $nome, $preco){
         $this->id = $id;

@@ -10,12 +10,14 @@ class ProdutoDAO {
         //conectar ao banco de dados
        $conexao = Conexao::obterConexao(); 
        // preparar um sql de inserção
-       $sql = "insert into produto (nome, preco) values (:nome, :preco)";
+       $sql = "insert into produto (nome, preco, imagem) ".
+              "values (:nome, :preco, :imagem)";
        $declaracao = $conexao->prepare($sql);
        // atribuir o valor dos atributos de produto aos
        //parametros da instrução sql
        $declaracao->bindValue(":nome",$produto->getNome());
        $declaracao->bindValue(":preco",$produto->getPreco());
+       $declaracao->bindValue(":imagem",$produto->imagem);
        //executar 
        $declaracao->execute();         
     }
@@ -79,5 +81,18 @@ class ProdutoDAO {
         return $produtos[0];
     }
 
+
+    function excluir($id){
+        //conectar ao banco de dados
+       $conexao = Conexao::obterConexao(); 
+       // preparar um sql de inserção
+       $sql = "delete from produto where id = :id";
+       $declaracao = $conexao->prepare($sql);
+       // atribuir o valor dos atributos de produto aos
+       //parametros da instrução sql
+       $declaracao->bindValue(":id",$id);
+       //executar 
+       $declaracao->execute();         
+    }
 
 }

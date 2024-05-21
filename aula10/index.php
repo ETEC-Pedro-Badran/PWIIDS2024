@@ -20,17 +20,39 @@ if ($method=="GET") {
         $dao = new ProdutoDAO();
         $produto = $dao->obter($id);
         require "produto.form.php";         
+    } else if ($operacao=="excluir") {
+        $id = $_GET["id"];
+        $dao = new ProdutoDAO();
+        $produto = $dao->excluir($id);
+        header("Location: /");
+        die();
     } else {
         require "produto.list.php"; 
     }
 } else if ($method=='POST') {
     $produto = new Produto($_POST["id"],$_POST["nome"],$_POST["preco"]);
     
-    if ($produto->getId()>0)     {
+    $tmp = $_FILES["imagem"]['tmp_name'];
+    $name = $_FILES["imagem"]['name'];
+    $partes = explode("\php",$tmp);
+    $partesTmp = explode(".",$partes[1]);
+    $partesNome = explode(".",$name);
+    $extensao = $partesNome[1];
+    $dest = "img/".$partesTmp[0].".".$extensao;
+    //error_log($tmp);
+    //error_log($name);
+    //error_log(print_r($partes,true));
+    //error_log(print_r($partesTmp,true));
+    //error_log(print_r($partesNome,true));
+    //error_log($dest);
+    move_uploaded_file($tmp, $dest);
+    $produto->imagem = $dest;
+    if ($produto->getId()>0) {
        $dao->alterar($produto);
     } else {
        $dao->inserir($produto);
     }
+   
     header('Location: /');
     die();
 }

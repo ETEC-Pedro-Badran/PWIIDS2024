@@ -4,12 +4,18 @@
   <form method='post' action="/produto/salvar" enctype="multipart/form-data">  
     <input type="hidden" name="id" value="<?=$id?>">
     <figure class="figure w-30 h-30">
-    <img src="./img/semimagem.png" class="rounded mx-auto d-block" alt=""
+    <img src="./img/semimagem.png" id='imagem' class="rounded mx-auto d-block" alt=""
       style="width:200px;height:200px">
     </figure>
+
+    
+    <input type="file" name="imagem" id="inputFile" style="display:none">
+
+
+
     <div class="mb-3">
     <label for="nome" class="form-label">Nome</label>
-    <input type="nome" class="form-control" id="nome" name="nome" placeholder="Nome do Produto"
+    <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome do Produto"
     value="<?=$produto->getNome()?>">
     </div>
     <div class="mb-3">
@@ -24,3 +30,26 @@
     </div>
 </form>
 </div>
+
+<script>
+    var imagem = document.getElementById('imagem');
+    imagem.addEventListener('click',()=>{
+        let input = document.getElementById('inputFile');
+        input.click();
+
+        input.addEventListener('change', () => {
+
+            if (input.files.length <= 0) {
+                return;
+            }
+
+            let reader = new FileReader();
+
+            reader.onload = () => {
+                imagem.src = reader.result;
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        });
+    });
+</script>

@@ -1,4 +1,14 @@
 
+<script >
+    function excluir(id, nome) {
+      var ok = confirm("Deseja mesmo excluir "+nome+"?");
+      if (ok==true) {
+         window.location.href = "/produto?operacao=excluir&id="+id; 
+      } 
+
+    }
+</script>  
+
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
       <a class="btn btn-outline-primary outlined-button" 
          type="button" href="?operacao=incluir">Novo</a>
@@ -27,7 +37,7 @@
                 <div class="btn-group " role="group">
                   <a href="/produto?operacao=alterar&id=<?=$pro->getId()?>" 
                          class="btn btn-outline-warning">Alterar</a>
-                  <a click="excluir(<?=$pro->getId()?>)" class="btn btn-outline-danger">Excluir</a>
+                  <a href="#!" onclick="excluir(<?=$pro->getId()?>,'<?=$pro->getNome()?>')" class="btn btn-outline-danger">Excluir</a>
                   
                 </div>
               </td>
