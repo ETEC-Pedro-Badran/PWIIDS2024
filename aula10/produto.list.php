@@ -17,6 +17,7 @@
     <table class="table table-striped border mt-2 ">
       <thead>  
         <tr>
+            <th>Imagem</th>
             <th>Id</th>
             <th>Nome</th>
             <th>Preço</th>
@@ -29,8 +30,16 @@
          $produtos = $dao->listar();
          foreach($produtos as $pro) {
        ?>
+            <style>
+                .img-produto {
+                  display: block;
+                  width: 80px;
+                  height: 80px;
+                }
+            </style>  
             <tr>
-              <td><?=$pro->getId()?></td>      
+              <td><img src='<?=$pro->imagem?>' class='img-produto'></td> 
+              <td><?=$pro->getId()?></td> 
               <td><?=$pro->getNome()?></td>
               <td>R$ <?=$pro->getPreco()?></td>
               <td style="text-align: end;">

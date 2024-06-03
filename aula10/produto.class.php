@@ -3,12 +3,13 @@ class Produto {
     private $id;
     private $nome;
     private $preco;
-    public $imagem;
+    public $imagem; // <<<<<<<<<<<<<<<
 
-    function __construct($id, $nome, $preco){
+    function __construct($id, $nome, $preco, $imagem){
         $this->id = $id;
         $this->nome = $nome;
         $this->preco = $preco;
+        $this->imagem = $imagem; // <<<<<<<<<<<<<
     }
     
     function toString(){

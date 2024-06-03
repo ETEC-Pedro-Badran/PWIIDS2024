@@ -27,7 +27,7 @@ class ProdutoDAO {
         //conectar no banco de dados
         $conexao = Conexao::obterConexao();
         //criar consulta
-        $sql = "SELECT id, nome, preco FROM Produto";
+        $sql = "SELECT id, nome, preco, imagem FROM Produto";
         //preparar a consulta
         $preparado = $conexao->prepare($sql);
         //executar    
@@ -38,7 +38,7 @@ class ProdutoDAO {
         //convertendo o resultado em Array para um array de Produtos.
         $produtos = array(); 
         foreach($resposta as $pro){
-           array_push($produtos,new Produto($pro['id'], $pro['nome'], $pro['preco']));
+           array_push($produtos,new Produto($pro['id'], $pro['nome'], $pro['preco'], $pro['imagem']));
         }
         //retornar os resultados
         return $produtos;
@@ -48,13 +48,14 @@ class ProdutoDAO {
         //conectar ao banco de dados
        $conexao = Conexao::obterConexao(); 
        // preparar um sql de inserção
-       $sql = "update produto set nome = :nome,preco = :preco where id = :id";
+       $sql = "update produto set nome = :nome,preco = :preco, imagem = :imagem where id = :id";
        $declaracao = $conexao->prepare($sql);
        // atribuir o valor dos atributos de produto aos
        //parametros da instrução sql
        $declaracao->bindValue(":id",$produto->getId());
        $declaracao->bindValue(":nome",$produto->getNome());
        $declaracao->bindValue(":preco",$produto->getPreco());
+       $declaracao->bindValue(":imagem",$produto->imagem);  // <<<<<<<<<<<<<<<<<<
        //executar 
        $declaracao->execute();         
     }
@@ -64,7 +65,7 @@ class ProdutoDAO {
         //conectar no banco de dados
         $conexao = Conexao::obterConexao();
         //criar consulta
-        $sql = "SELECT id, nome, preco FROM Produto where id = :id";
+        $sql = "SELECT id, nome, preco, imagem FROM Produto where id = :id";
         //preparar a consulta
         $preparado = $conexao->prepare($sql);
         $preparado->bindValue("id",$id);
@@ -75,7 +76,7 @@ class ProdutoDAO {
         //convertendo o resultado em Array para um array de Produtos.
         $produtos = array(); 
         foreach($resposta as $pro){
-           array_push($produtos,new Produto($pro['id'], $pro['nome'], $pro['preco']));
+           array_push($produtos,new Produto($pro['id'], $pro['nome'], $pro['preco'], $pro['imagem']));
         }
         //retornar os resultados
         return $produtos[0];
