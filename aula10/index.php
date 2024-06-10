@@ -13,7 +13,7 @@ if ($method=="GET") {
     $operacao = @$_GET['operacao'];
     $id = 0;
     if ($operacao=="incluir") {
-        $produto = new Produto(0,"","");
+        $produto = new Produto(0,"","",null);
         require "produto.form.php"; 
     } else if ($operacao=="alterar") {
         $id = $_GET["id"];
@@ -30,23 +30,32 @@ if ($method=="GET") {
         require "produto.list.php"; 
     }
 } else if ($method=='POST') {
-    $produto = new Produto($_POST["id"],$_POST["nome"],$_POST["preco"]);
-    
-    $tmp = $_FILES["imagem"]['tmp_name'];
-    $name = $_FILES["imagem"]['name'];
-    $partes = explode("\php",$tmp);
-    $partesTmp = explode(".",$partes[1]);
-    $partesNome = explode(".",$name);
-    $extensao = $partesNome[1];
-    $dest = "img/".$partesTmp[0].".".$extensao;
-    //error_log($tmp);
-    //error_log($name);
-    //error_log(print_r($partes,true));
-    //error_log(print_r($partesTmp,true));
-    //error_log(print_r($partesNome,true));
-    //error_log($dest);
-    move_uploaded_file($tmp, $dest);
-    $produto->imagem = $dest;
+    if ($_POST["id"]>0) {
+        $dao = new ProdutoDAO();
+        $produto = $dao->obter($_POST["id"]);
+        $produto->setNomePreco($_POST["nome"],$_POST["preco"]);
+    } else {
+        $produto = new Produto($_POST["id"],$_POST["nome"],$_POST["preco"],null);
+    }
+
+    if (!empty($_FILES["imagem"]['name'])) {
+        $tmp = $_FILES["imagem"]['tmp_name'];
+        $name = $_FILES["imagem"]['name'];
+        $partes = explode("\php",$tmp);
+        $partesTmp = explode(".",$partes[1]);
+        $partesNome = explode(".",$name);
+        $extensao = $partesNome[1];
+        $dest = "img/".$partesTmp[0].".".$extensao;
+        //error_log($tmp);
+        //error_log($name);
+        //error_log(print_r($partes,true));
+        //error_log(print_r($partesTmp,true));
+        //error_log(print_r($partesNome,true));
+        //error_log($dest);
+        move_uploaded_file($tmp, $dest);
+        $produto->imagem = $dest;
+    }
+
     if ($produto->getId()>0) {
        $dao->alterar($produto);
     } else {

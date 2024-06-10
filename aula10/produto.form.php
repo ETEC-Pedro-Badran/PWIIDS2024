@@ -4,7 +4,7 @@
   <form method='post' action="/produto/salvar" enctype="multipart/form-data">  
     <input type="hidden" name="id" value="<?=$id?>">
     <figure class="figure w-30 h-30">
-    <img src="./img/semimagem.png" id='imagem' class="rounded mx-auto d-block" alt=""
+    <img src="./<?=$produto->imagem==null?"img/semimagem.png":$produto->imagem?>" id='imagem' class="rounded mx-auto d-block" alt=""
       style="width:200px;height:200px">
     </figure>
 

@@ -26,7 +26,10 @@ class Produto {
         return $this->preco;
     }
 
-
+    function setNomePreco($nome, $preco){
+        $this->nome = $nome;
+        $this->preco= $preco;
+    }
     
 
 }
